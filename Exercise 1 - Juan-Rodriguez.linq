@@ -50,3 +50,24 @@ ClubMembers
 			ClubName = x.Club.ClubName
 		})
 	.Dump();
+	
+// Question 3
+ProgramCourses
+	.Where(x => x.Program.ProgramName == "Electrical Engineering Technology" && x.Required == true )
+	.OrderBy(x => x.Program.ProgramName)
+	.ThenBy(x => x.Course.CourseName)
+	.Select( x => new 
+		{
+			ProgramName = x.Program.ProgramName,
+			CourseID = x.CourseID,
+			CourseName = x.Course.CourseName,
+			Credits = x.Course.Credits,
+			Coursecategory = x.Course.Credits == 10 ? "Coop" :
+							x.Course.Credits <= 5 ? "Introduction Course" :
+							x.Course.Credits <= 6.5m ? "Indepth Courses" :
+							"Unknown Course Type"
+							
+		})
+		.Dump();
+	
+// Question 4 
