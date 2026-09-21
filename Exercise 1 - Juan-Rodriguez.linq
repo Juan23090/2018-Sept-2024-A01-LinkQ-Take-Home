@@ -71,3 +71,20 @@ ProgramCourses
 		.Dump();
 	
 // Question 4 
+Employees
+	.Where(x => x.Position.Description != "Instructor")
+	.OrderBy(x => x.Program.ProgramName)
+	.ThenBy(x => x.Position.Description)
+	.ThenBy(x => x.FirstName)
+	.Select( x => new 
+		{
+			SchoolName = x.Program.Schools.SchoolName,
+			EmployeeID = x.EmployeeID,
+			FirstName = x.FirstName,
+			LastName = x.LastName,
+			PositionDescription = x.Position.Description,
+			ProgramName = x.Program.ProgramName
+		
+		})
+		.Dump();
+	
