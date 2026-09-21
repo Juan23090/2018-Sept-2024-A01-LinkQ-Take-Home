@@ -33,3 +33,20 @@ Rentals
 			AvailableDate = x.AvailableDate == null ? "U/K" : x.AvailableDate.Value.ToString()
 		})
 	.Dump();
+
+// Question 2
+ClubMembers
+	.Where(x => x.Active == true &&
+			x.Role.Description != "Member")
+	.OrderBy( x => x.Club.ClubName)
+	.ThenBy(x => x.Role.Description)
+	.ThenBy(x => x.Student.LastName)
+	.Select (x => new
+		{
+			StudentNumber = x.StudentNumber,
+			Role = x.Role.Description,
+			FirstName = x.Student.FirstName,
+			LastName = x.Student.LastName,
+			ClubName = x.Club.ClubName
+		})
+	.Dump();
